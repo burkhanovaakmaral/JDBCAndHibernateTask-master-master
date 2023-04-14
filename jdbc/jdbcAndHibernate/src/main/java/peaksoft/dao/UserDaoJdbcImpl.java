@@ -17,7 +17,8 @@ public class UserDaoJdbcImpl implements UserDao {
      String SQL = "CREATE TABLE IF NOT EXISTS users" +
              "(id BIGSERIAL PRIMARY KEY," +
              "name VARCHAR(50) NOT NULL," +
-             "last_name VARCHAR(50) NOT NULL,age SMALLINT);";
+             "last_name VARCHAR(50) NOT NULL," +
+             "age SMALLINT);";
      try(Connection connection = Util.connection();
      Statement statement = connection.createStatement()){
          statement.executeUpdate(SQL);
@@ -32,6 +33,8 @@ public class UserDaoJdbcImpl implements UserDao {
         try(Connection connection = Util.connection();
         PreparedStatement statement = connection.prepareStatement(SQL)){
             statement.executeUpdate();
+            System.out.println("Successfully deleted table users");
+
 
         }catch (SQLException e){
             System.out.println(e.getMessage());
